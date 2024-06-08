@@ -12,8 +12,8 @@
             max-width: 800px;
             margin: auto;
             padding: 30px;
-            border: 1px solid #eee;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            border: 1px solid #eeeeee;
+            box-shadow: 0 0 10px rgba(91, 11, 249, 0.15);
             font-size: 16px;
             line-height: 24px;
             color: #555;
@@ -34,8 +34,8 @@
             padding-bottom: 20px;
         }
         .invoice-box table tr.top table td.title {
-            font-size: 45px;
-            line-height: 45px;
+            font-size: 30px;
+            line-height: 30px;
             color: #333;
         }
         .invoice-box table tr.information table td {
@@ -86,10 +86,14 @@
                             <td>
                                 {{ teacher_name }}<br>
                                 {{ teacher_address }}<br>
+                                {{ teacher_city }}<br>
+                                {{ teacher_phone }}<br>
                                 {{ teacher_email }}
                             </td>
                             <td>
-                                {{ household_name }}
+                                <strong>BILL TO:</strong><br>
+                                {{ household_fullname }}<br>
+                                {{ household_email }}
                             </td>
                         </tr>
                     </table>
@@ -116,7 +120,7 @@
             <tr class="total">
                 <td></td>
                 <td>
-                   Total: ${{ total_amount_due }}
+                   Total: {{ total_amount_due }}
                 </td>
             </tr>
         </table>
