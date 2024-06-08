@@ -22,6 +22,10 @@ def generate_invoice(household_name, household_data):
     household_fullname = household_data['household_fullname1'].values[0]
     household_email = household_data['household_email1'].values[0]
     
+    # Extract month and year
+    month = household_data['Month'].values[0]
+    year = pd.to_datetime('today').year
+    
     context = {
         'invoice_number': invoice_number,
         'date': pd.to_datetime('today').strftime('%Y-%m-%d'),
@@ -40,8 +44,10 @@ def generate_invoice(household_name, household_data):
 
     invoice_html = template.render(**context)
     
+    # Generate filename
+    pdf_filename = f"invoice_{household_name}_{month}_{year}.pdf"
+    pdf_path = os.path.join('./invoices', pdf_filename)
     html = HTML(string=invoice_html)
-    pdf_path = f"./invoices/invoice_{household_name}_{invoice_number}.pdf"
     html.write_pdf(pdf_path)
 
 # Create output directory if it doesn't exist
